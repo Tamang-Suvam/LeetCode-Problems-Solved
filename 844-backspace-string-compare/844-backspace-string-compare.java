@@ -1,6 +1,5 @@
 class Solution {
     public boolean backspaceCompare(String s, String t) {
-        Boolean result = true;
         Stack<Character> stack1 = new Stack<>();
         Stack<Character> stack2 = new Stack<>();
         
@@ -21,26 +20,7 @@ class Solution {
                 stack2.pop();
             }
         }
-        
-        while(!stack1.empty() || !stack2.empty()){
-            if(stack1.empty() && !stack2.empty()){
-                result = false;
-                break;
-            }
-            else if(stack2.empty() && !stack1.empty()){
-                result = false;
-                break;
-            }
-            else{
-                  char c1 = stack1.pop();
-                  char c2 = stack2.pop();
-                  if(c1 != c2){
-                     result = false;
-                     break;
-                  }
-            }
-        }
-        
-        return result;
+
+        return stack1.equals(stack2);
     }
 }
