@@ -15,31 +15,7 @@
  */
 class Solution {
     public TreeNode bstFromPreorder(int[] preorder) {
-         TreeNode root = new TreeNode(preorder[0]);
-
-         // for(int i=1; i<preorder.length; i++){
-         //     TreeNode temp = root;
-         //     while(true){
-         //         if(preorder[i] < temp.val){
-         //             if(temp.left != null && temp.val > preorder[i]){
-         //                 temp = temp.left;
-         //             }
-         //             else{
-         //                 temp.left = new TreeNode(preorder[i]);
-         //                 break;
-         //             }
-         //         }
-         //         if(preorder[i] > temp.val){
-         //             if(temp.right != null && temp.val < preorder[i]){
-         //                 temp = temp.right;
-         //             }
-         //             else{
-         //                 temp.right = new TreeNode(preorder[i]);
-         //                 break;
-         //             }
-         //         }
-         //     }
-         // }
+        TreeNode root = new TreeNode(preorder[0]);
         
         for(int i=1; i<preorder.length;i++){
             helperCreate(root, preorder[i]);
