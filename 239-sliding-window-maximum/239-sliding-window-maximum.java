@@ -1,7 +1,6 @@
 class Solution {
    
     public int[] maxSlidingWindow(int[] nums, int k) {
-        int j = 0;
         int [] result = new int [nums.length-k+1];
         if(nums.length==1)
             return nums;
@@ -12,7 +11,7 @@ class Solution {
             Qi.offerLast(nums[i]);
             
             if(i>=(k-1)){
-                result[j++] = Qi.peekFirst();
+                result[i-k+1] = Qi.peekFirst();
                 if(!Qi.isEmpty() && Qi.peekFirst() == nums[i-k+1])
                     Qi.removeFirst();
             }
