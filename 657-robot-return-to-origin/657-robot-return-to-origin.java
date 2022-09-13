@@ -1,6 +1,5 @@
 class Solution {
     public boolean judgeCircle(String moves) {
-        Boolean result = false;
         int up = 0, left = 0;
         for(int i=0; i<moves.length(); i++) {
             if(moves.charAt(i)=='U') {
@@ -20,8 +19,6 @@ class Solution {
                 continue;
             }
         }
-        if(up == 0 && left == 0)
-            result = true;
-        return result;
+        return (up == 0 && left == 0);
     }
 }
