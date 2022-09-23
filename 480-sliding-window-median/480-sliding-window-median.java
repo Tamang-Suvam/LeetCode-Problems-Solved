@@ -1,34 +1,34 @@
 class Solution {
     public double[] medianSlidingWindow(int[] nums, int k) {
-    double[] result = new double[nums.length - k + 1];
-    PriorityQueue<Integer> left = new PriorityQueue<>(Collections.reverseOrder());
-    PriorityQueue<Integer> right = new PriorityQueue<>();
-    
-    for(int i = 0; i < nums.length; i++) {
-        if(left.size() <= right.size()) {
-            right.add(nums[i]);
-            left.add(right.remove());
-        } else {
-            left.add(nums[i]);
-            right.add(left.remove());
-        }
-        
+        double[] result = new double[nums.length - k + 1];
+        PriorityQueue<Integer> maxHeap = new PriorityQueue<>(Collections.reverseOrder());
+        PriorityQueue<Integer> minHeap = new PriorityQueue<>();
 
-        if(left.size() + right.size() == k) {
-            double median;
-            if(left.size() == right.size()) {
-                median = (double) ((long)left.peek() + (long)right.peek()) / 2;
+        for(int i = 0; i < nums.length; i++) {
+            if(maxHeap.size() <= minHeap.size()) {
+                minHeap.add(nums[i]);
+                maxHeap.add(minHeap.remove());
             } else {
-                median = (double) left.peek();
+                maxHeap.add(nums[i]);
+                minHeap.add(maxHeap.remove());
             }
-            
-            int start = i - k + 1;
-            result[start] = median;
-            if(!left.remove(nums[start])) {
-                right.remove(nums[start]);
+
+
+            if(minHeap.size() + maxHeap.size() == k) {
+                double median;
+                if(maxHeap.size() == minHeap.size()) {
+                    median = (double) ((long)maxHeap.peek() + (long)minHeap.peek()) / 2;
+                } else {
+                    median = (double) maxHeap.peek();
+                }
+
+                int start = i - k + 1;
+                result[start] = median;
+                if(!maxHeap.remove(nums[start])) {
+                    minHeap.remove(nums[start]);
+                }
             }
         }
+        return result;
     }
-    return result;
-}
 }
